@@ -10,7 +10,8 @@ const mongoose = require('mongoose'); // Needed for ObjectId validation
 // Authentication & User Management Services
 // ====================================================
 
-const register = async (name, email, password) => {
+const 
+register = async (name, email, password) => {
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {

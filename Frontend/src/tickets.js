@@ -73,7 +73,7 @@ function TicketManagement() {
             };
 
             const response = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/tickets`,
+                `http://localhost:8085/tickets`,
                 newTicket,
                 { timeout: 120000 }
             );
@@ -130,7 +130,7 @@ function TicketManagement() {
 
         try {
             const response = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/tickets/bulk`,
+                `http://localhost:8085/tickets/bulk`,
                 formData,
                 {
                     headers: {
@@ -162,7 +162,7 @@ function TicketManagement() {
         try {
             console.log(assignedUserId)
             const response = await axios.put(
-                `${process.env.REACT_APP_BASE_URL}/tickets/${ticketNumber}/assign`,
+                `http://localhost:8085/tickets/${ticketNumber}/assign`,
                 { ticket_number: ticketNumber, user_id: assignedUserId }, // Send correct IDs
                 { timeout: 120000 }
             );
@@ -201,7 +201,7 @@ function TicketManagement() {
        
         try {
             const response = await axios.put(
-                `${process.env.REACT_APP_BASE_URL}/ticket/${ticketNumber}/edit-assigned`,
+                `http://localhost:8085/ticket/${ticketNumber}/edit-assigned`,
                 { user_id: newAssignedUserId }, // Fix payload
                 { timeout: 120000 } // Fix Axios config
             );
@@ -237,7 +237,7 @@ function TicketManagement() {
             }
 
             const response = await fetch(
-                `${process.env.REACT_APP_BASE_URL}/tickets?query=${searchTerm}&role=${userRole}&userId=${userId}&page=${currentPage}&limit=20`,
+                `http://localhost:8085/tickets?query=${searchTerm}&role=${userRole}&userId=${userId}&page=${currentPage}&limit=20`,
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -263,7 +263,7 @@ function TicketManagement() {
             try {
                 const authToken = localStorage.getItem("authToken"); // Get the token
 
-                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/tickets/${ticketId}`, {
+                const response = await fetch(`http://localhost:8085/tickets/${ticketId}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${authToken}`, // Attach token
@@ -291,7 +291,7 @@ function TicketManagement() {
 
     const fetchSupportAgents = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/registration/agents`);
+            const response = await axios.get(`http://localhost:8085/registration/agents`);
             setSupportAgents(response.data);
         } catch (error) {
             console.error("Error fetching support agents:", error);
@@ -301,7 +301,7 @@ function TicketManagement() {
     const handleStatusChange = async (ticketNumber, newStatus) => {
         try {
             const response = await axios.put(
-                `${process.env.REACT_APP_BASE_URL}/tickets/${ticketNumber}/status`,
+                `http://localhost:8085/tickets/${ticketNumber}/status`,
                 { status: newStatus, ticket_number: ticketNumber },
                 { timeout: 120000 }
             );

@@ -47,7 +47,7 @@ function Register() {
     setLoading(true);
 
     try {
-      //await axios.post(`${process.env.REACT_APP_BASE_URL}/register`, values);
+      //await axios.post(`http://localhost:8085/register`, values);
       await fetch("http://localhost:8085/register",{
         headers:{
           "Content-Type":"application/json"

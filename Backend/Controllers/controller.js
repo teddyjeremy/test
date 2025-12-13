@@ -1,7 +1,7 @@
 // controllers/controller.js (Your original file, with minor adjustments)
 const XLSX = require('xlsx');
 const service = require('../Service/service'); // This will now use the Mongoose-based service
-const sendTicketEmail = require("../email"); // Assuming this utility is still valid
+const sendTicketEmail = require('../email'); // Assuming this utility is still valid
 
 // ====================================================
 // Authentication & User Management Controllers

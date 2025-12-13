@@ -56,8 +56,8 @@ function Dashboard() {
   const fetchCounts = async (month) => {
     try {
       const [agentResponse, ticketResponse] = await Promise.all([
-        axios.get(`${process.env.REACT_APP_BASE_URL}/agents/count`),
-        axios.get(`${process.env.REACT_APP_BASE_URL}/tickets/count?month=${month}`)
+        axios.get(`http://localhost:8085/agents/count`),
+        axios.get(`http://localhost:8085/tickets/count?month=${month}`)
       ]);
       setSupportAgentCount(agentResponse.data.count);
       setTicketCount(ticketResponse.data.count);
@@ -75,7 +75,7 @@ function Dashboard() {
   //Resolved tickets percentage
   const fetchTicketStats = async () => {
     try {
-      const {data} = await axios.get(`${process.env.REACT_APP_BASE_URL}/tickets/stats`);
+      const {data} = await axios.get(`http://localhost:8085/tickets/stats`);
       const totalCount = data.open + data.resolved + data.closed;
       setTotalCount(totalCount || 0);
       setResolvedCount(data.resolved);
@@ -87,7 +87,7 @@ function Dashboard() {
   // Tickets bar
   const fetchTicketPriority = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/tickets/priority`);
+      const response = await axios.get(`http://localhost:8085/tickets/priority`);
 
       if (response.status === 200) {
         const tickets = response.data;
@@ -116,7 +116,7 @@ function Dashboard() {
 
   const fetchTicketStatus = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/tickets/status`);
+      const response = await axios.get(`http://localhost:8085/tickets/status`);
       setTicketStatus(response.data);
     } catch (err) {
       console.error("Error fetching ticket stats:", err.message);
@@ -126,7 +126,7 @@ function Dashboard() {
 
   const fetchAgents = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/registration/top/agents`);
+      const response = await axios.get(`http://localhost:8085/registration/top/agents`);
       setAgents(response.data);
     } catch (err) {
       console.error("Error fetching agents:", err.message);
@@ -136,7 +136,7 @@ function Dashboard() {
 
   const fetchTickets = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/tickets/list`);
+      const response = await fetch(`http://localhost:8085/tickets/list`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

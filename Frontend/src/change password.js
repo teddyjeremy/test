@@ -47,7 +47,7 @@ function ChangePassword() {
 
             // Send the request to the backend
             const res = await axios.post(
-                `${process.env.REACT_APP_BASE_URL}/registration/change-password`,
+                `http://localhost:8085/registration/change-password`,
                 { currentPassword, newPassword },
                 {
                     headers: {

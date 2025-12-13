@@ -9,7 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Button from "react-bootstrap/Button";
 import logo from "./logo.png";
 
-const socket = io(`${process.env.REACT_APP_BASE_URL}`);
+const socket = io(`http://localhost:8085`);
 //toString
 function Chat() {
     const [messages, setMessages] = useState([]);
@@ -92,7 +92,7 @@ function Chat() {
 
     const fetchSupportAgents = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/registration/agents`);
+            const response = await axios.get(`http://localhost:8085/registration/agents`);
             setSupportAgents(response.data);
         } catch (error) {
             console.error("Error fetching support agents:", error);
@@ -101,7 +101,7 @@ function Chat() {
 
     const fetchCustomers = async () => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/registration/customers`);
+            const response = await axios.get(`http://localhost:8085/registration/customers`);
             setCustomers(response.data);
         } catch (error) {
             console.error("Error fetching customers:", error);
@@ -155,11 +155,11 @@ function Chat() {
         socket.emit("send_message", messageData, (response) => {
             if (response.status === "ok") {
 
-            }
-        });
+            console.log('okay')
+        };
         setMessages((prev) => [...prev, { sender: userId, messageData }]);
         setNewMessage("");
-    };
+    })};
 
     const handleKeyPress = (e) => {
         if (e.key === "Enter" && newMessage.trim()) {
@@ -407,5 +407,6 @@ function Chat() {
     );
 
 };
+
 
 export default Chat;

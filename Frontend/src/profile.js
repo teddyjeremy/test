@@ -28,7 +28,7 @@ function UserProfile() {
                     console.error('No auth token found');
                     return;
                 }
-                const response = await fetch(`${process.env.REACT_APP_BASE_URL}/register/profile`, {
+                const response = await fetch(`http://localhost:8085/register/profile`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -77,10 +77,10 @@ function UserProfile() {
                 throw new Error("Unauthorized: Please log in again.");
             }
 
-            console.log("Sending request to:", `${process.env.REACT_APP_BASE_URL}/registration/update`);
+            console.log("Sending request to:", `http://localhost:8085/registration/update`);
             console.log("Request Payload:", updatedProfile);
 
-            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/registration/update`, {
+            const response = await fetch(`http://localhost:8085/registration/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -95,7 +95,7 @@ function UserProfile() {
             try {
                 data = await response.json();
                 console.log("Server Response:", data);
-            } catch (jsonError) {
+            } catch  {
                 throw new Error("Unexpected server response. Please try again.");
             }
 

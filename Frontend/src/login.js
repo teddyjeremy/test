@@ -34,7 +34,7 @@ function Login() {
     if (!validateForm()) return;
     setIsLoading(true);
     setError('');
-    //axios.post(`${process.env.REACT_APP_BASE_URL}/login`, values)
+    //axios.post(`http://localhost:8085/login`, values)
     fetch("http://localhost:8085/login",{
       headers:{
           "Content-Type":"application/json"
@@ -120,7 +120,7 @@ function Login() {
           </button>
 
           <p className='mt-3 text-center'>
-            Don't have an account? <Link to="/register">Register</Link>
+            Dont have an account? <Link to="/register">Register</Link>
           </p>
         </form>
       </div>
