@@ -9,7 +9,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Button from "react-bootstrap/Button";
 import logo from "./logo.png";
 
-const socket = io(`http://localhost:8085`);
+const socket = io(`http://localhost:5000`);
 //toString
 function Chat() {
     const [messages, setMessages] = useState([]);
@@ -92,7 +92,7 @@ function Chat() {
 
     const fetchSupportAgents = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/registration/agents`);
+            const response = await axios.get(`http://localhost:5000/registration/agents`);
             setSupportAgents(response.data);
         } catch (error) {
             console.error("Error fetching support agents:", error);
@@ -101,7 +101,7 @@ function Chat() {
 
     const fetchCustomers = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/registration/customers`);
+            const response = await axios.get(`http://localhost:5000/registration/customers`);
             setCustomers(response.data);
         } catch (error) {
             console.error("Error fetching customers:", error);

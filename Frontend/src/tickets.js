@@ -73,7 +73,7 @@ function TicketManagement() {
             };
 
             const response = await axios.post(
-                `http://localhost:8085/tickets`,
+                `http://localhost:5000/tickets`,
                 newTicket,
                 { timeout: 120000 }
             );
@@ -130,7 +130,7 @@ function TicketManagement() {
 
         try {
             const response = await axios.post(
-                `http://localhost:8085/tickets/bulk`,
+                `http://localhost:5000/tickets/bulk`,
                 formData,
                 {
                     headers: {
@@ -162,7 +162,7 @@ function TicketManagement() {
         try {
             console.log(assignedUserId)
             const response = await axios.put(
-                `http://localhost:8085/tickets/${ticketNumber}/assign`,
+                `http://localhost:5000/tickets/${ticketNumber}/assign`,
                 { ticket_number: ticketNumber, user_id: assignedUserId }, // Send correct IDs
                 { timeout: 120000 }
             );
@@ -201,7 +201,7 @@ function TicketManagement() {
        
         try {
             const response = await axios.put(
-                `http://localhost:8085/ticket/${ticketNumber}/edit-assigned`,
+                `http://localhost:5000/ticket/${ticketNumber}/edit-assigned`,
                 { user_id: newAssignedUserId }, // Fix payload
                 { timeout: 120000 } // Fix Axios config
             );
@@ -237,7 +237,7 @@ function TicketManagement() {
             }
 
             const response = await fetch(
-                `http://localhost:8085/tickets?query=${searchTerm}&role=${userRole}&userId=${userId}&page=${currentPage}&limit=20`,
+                `http://localhost:5000/tickets?query=${searchTerm}&role=${userRole}&userId=${userId}&page=${currentPage}&limit=20`,
                 {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -263,7 +263,7 @@ function TicketManagement() {
             try {
                 const authToken = localStorage.getItem("authToken"); // Get the token
 
-                const response = await fetch(`http://localhost:8085/tickets/${ticketId}`, {
+                const response = await fetch(`http://localhost:5000/tickets/${ticketId}`, {
                     method: "DELETE",
                     headers: {
                         Authorization: `Bearer ${authToken}`, // Attach token
@@ -291,7 +291,7 @@ function TicketManagement() {
 
     const fetchSupportAgents = async () => {
         try {
-            const response = await axios.get(`http://localhost:8085/registration/agents`);
+            const response = await axios.get(`http://localhost:5000/registration/agents`);
             setSupportAgents(response.data);
         } catch (error) {
             console.error("Error fetching support agents:", error);
@@ -301,7 +301,7 @@ function TicketManagement() {
     const handleStatusChange = async (ticketNumber, newStatus) => {
         try {
             const response = await axios.put(
-                `http://localhost:8085/tickets/${ticketNumber}/status`,
+                `http://localhost:5000/tickets/${ticketNumber}/status`,
                 { status: newStatus, ticket_number: ticketNumber },
                 { timeout: 120000 }
             );
@@ -583,7 +583,7 @@ function TicketManagement() {
                                             </td>
                                            
                                             <td>
-                                                {userRole === "admin" || userRole === "support agent" ? (
+                                                {userRole === "admin" || userRole === "agent" ? (
                                                     <select
                                                         value={ticket.status}
                                                         onChange={(e) => handleStatusChange(ticket.ticket_number, e.target.value)}

@@ -47,8 +47,8 @@ function Register() {
     setLoading(true);
 
     try {
-      //await axios.post(`http://localhost:8085/register`, values);
-      await fetch("http://localhost:8085/register",{
+      //await axios.post(`http://localhost:5000/register`, values);
+      await fetch("http://localhost:5000/register",{
         headers:{
           "Content-Type":"application/json"
         },

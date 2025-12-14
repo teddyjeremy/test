@@ -17,7 +17,7 @@ function UserManagement() {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
-    const [roles] = useState(['customer', 'admin', 'support agent']);
+    const [roles] = useState(['customer', 'admin', 'agent']);
     const handleClose = () => setShowOffcanvas(false);
     const handleShow = () => setShowOffcanvas(true);
     const [showDeactivateModal, setShowDeactivateModal] = useState(false);
@@ -46,7 +46,7 @@ function UserManagement() {
     const fetchUsers = useCallback(async () => {
         setLoading(true);
         try {
-            const response = await axios.get(`http://localhost:8085/registration`, {
+            const response = await axios.get(`http://localhost:5000/registration`, {
                 params: { search, role: roleFilter }
             });
             setUsers(response.data.users);
@@ -75,7 +75,7 @@ function UserManagement() {
             setSuccessMessage('');
 
             const response = await axios.put(
-                `http://localhost:8085/registration/${id}/role`,
+                `http://localhost:5000/registration/${id}/role`,
                 { role: selectedRole } // Use selected role from dropdown
             );
 
@@ -100,7 +100,7 @@ function UserManagement() {
         if (!selectedUser) return;
 
         try {
-            const response = await axios.put(`http://localhost:8085/registration/${selectedUser.id}/deactivate`);
+            const response = await axios.put(`http://localhost:5000/registration/${selectedUser.id}/deactivate`);
             setSuccessMessage(response.data.message);
             setErrorMessage('');
             setShowDeactivateModal(false); // Close modal
@@ -117,7 +117,7 @@ function UserManagement() {
 
     const handleDelete = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8085/registration/${id}`);
+            const response = await axios.delete(`http://localhost:5000/registration/${id}`);
             setSuccessMessage(response.data.message);
             setErrorMessage('');
             setShowDeleteModal(false);
@@ -366,7 +366,7 @@ function UserManagement() {
                                                         value={newRole}
                                                         onChange={(e) => setNewRole(e.target.value)}
                                                     >
-                                                        <option value="support agent">Support Agent</option>
+                                                        <option value="agent">Support Agent</option>
                                                         <option value="admin">Admin</option>
                                                     </select>
                                                 </div>

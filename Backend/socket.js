@@ -103,7 +103,7 @@ module.exports = (io) => {
         });
 
         // 📜 Load Previous Messages
-        socket.on("load_messages", async ({ senderId,  }) => {
+        socket.on("load_messages", async ({ senderId }) => {
             try {
                const messages = await Message.find({
                 $or: [

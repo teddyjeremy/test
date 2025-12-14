@@ -47,7 +47,7 @@ function ChangePassword() {
 
             // Send the request to the backend
             const res = await axios.post(
-                `http://localhost:8085/registration/change-password`,
+                `http://localhost:5000/registration/change-password`,
                 { currentPassword, newPassword },
                 {
                     headers: {
