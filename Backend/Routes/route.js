@@ -53,7 +53,7 @@ router.get('/registration/customers', controller.fetchCustomers);
 router.post("/messages", controller.sendMessages);
 
 // Fetch Messages Route
-router.get("/messages:userId", controller.fetchMessages);
+router.get("/messages/:userId", controller.fetchMessages);
 
 // Dashboard - Fetch Agent Count Route
 router.get("/agents/count", controller.fetchAgentCount);

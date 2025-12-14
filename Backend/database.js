@@ -2,8 +2,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 
 // Get MongoDB connection URI from environment variables
-//const dbURI = process.env.MONGODB_URI; 
-const dbURI = "mongodb://localhost:27017/ticket"
+const dbURI = process.env.MONGODB_URI || "mongodb://localhost:27017/ticket";
 // Check if MONGODB_URI is defined
 if (!dbURI) {
     console.error('Error: MONGODB_URI is not defined in your .env file.');

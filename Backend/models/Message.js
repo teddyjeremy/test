@@ -18,7 +18,7 @@ const messageSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        required: true,
+        default: 'sent',
         trim: true
     },
 

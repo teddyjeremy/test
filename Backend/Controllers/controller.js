@@ -515,9 +515,9 @@ const sendMessages = async (req, res) => {
 
 // Controller: fetchMessages
 const fetchMessages = async (req, res) => {
-    const { receiverId } = req.params; // This is a MongoDB _id
+    const { userId } = req.params; // Changed from receiverId to userId to match route
     try {
-        const messages = await service.fetchMessagesService(receiverId);
+        const messages = await service.fetchMessagesService(userId);
         res.json(messages);
     } catch (err) {
         console.error("Error fetching messages:", err);
